@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<!-- Template by Quackit.com -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Portfolio, 2 Column</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
+    <link href="/static/css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Logo and responsive toggle -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                	<span class="glyphicon glyphicon-fire"></span> 
+                	Vehicle Maintenance Index
+                </a>
+            </div>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+   
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#">Compare</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+		        <h3 class="modal-title" id="modaltitle"></h3>
+        <h4 class="modal-title" id="modaldescription"></h4>
+
+      </div>
+      <div class="modal-body" id="modalbody">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="">
+    <select class="form-control" onchange="please_sort_by()" style="width:100px;margin:20px;float:right" id="sort_by">
+
+	<option value="default">Sort By </option>
+		<option value="mileage">Mileage </option>
+	<option value="price">Price </option>
+	<option value="oil_change">Oil Change </option>
+	<option value="airfilter_change">Airfilter Change </option>
+	<option value="spark_plug_change">Sparkplug Change</option>
+	<option value="tire_change">Tyre Change </option>
+	<option value="battery_change">Battery Change</option>
+			<option value="rating"> Rating</option>
+
+
+    </select>
+</div>
+    <!-- Content -->
+    <div class="container">
+
+        <!-- Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Top Cars
+                    <small>according to sorting order you select, View or Compare cars (lower the rating higher is the maintenance cost)</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+        <div class="row">
+{% for n1 in con %}        
+		<div class="col-md-2 portfolio-item">
+                <a href="javascript:void(0)">
+                    <img class="img-responsive" style="width:170px;height:150px" src="{{n1.img_url}}" alt="">
+                </a>
+                <h3 style="margin-top:5px">
+                    <a href="javascript:void(0)" >{{n1.vehicle_name}}</a>
+                </h3>
+            </div>
+        {% endfor %}
+        </div>
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+    
+
+
+        <!-- Projects Row -->
+
+        <!-- Pagination -->
+
+        <!-- /.row -->
+
+    </div>
+	
+	
+	<div class="container">
+  {{comparestr|safe}}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Mileage</th>		
+        <th>Oil Change</th>		
+        <th>Airfilter Change</th>		
+        <th>Sparkplug Change</th>		
+        <th>Tyre Change</th>		
+        <th>Battery Change</th>	
+		        <th>Rating</th>		
+
+	
+
+      </tr>
+    </thead>
+    <tbody>
+	  {% for n1 in con %}
+	
+      <tr>
+        <td>{{n1.vehicle_name}}</td>
+        <td>{{n1.mileage}}</td>
+        <td>{{n1.oil_change}}</td>
+        <td>{{n1.airfilter_change}}</td>
+        <td>{{n1.spark_plug_change}}</td>
+        <td>{{n1.tire_change}}</td>
+        <td>{{n1.battery_change}}</td>
+        <td>{{n1.rating}}</td>
+		
+
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+    <!-- /.container -->
+	
+	<footer>
+		<div class="footer-blurb">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4 footer-blurb-item">
+						<img class="img-circle" src="https://scontent.fbho4-1.fna.fbcdn.net/v/t1.0-9/68397046_407235603254865_1122643767581474816_n.png?_nc_cat=102&_nc_sid=85a577&_nc_ohc=He8ADB0qIR8AX9GLgsB&_nc_ht=scontent.fbho4-1.fna&oh=8b9acc8a7fb9b032d038301aad67a495&oe=5F45D30C" alt="" width="100" height="100">
+						<h3>SIH2020</h3>
+						<p>Smart India Hackathon 2020 Software Edition Grand Finale. 
+						Our Domain Bucket Is Smart Vehicles.</p>
+					</div>
+					<div class="col-sm-4 footer-blurb-item">
+						<img class="img-circle" src="http://paulgillrie.com/wp-content/uploads/2014/10/CDK-Global-formerly-ADP-300x300.png" alt="" width="100" height="100">
+						<h3>CDK Global-USA-EN</h3>
+						<p>CDK Global is an organization. 
+						For this organization we are developing this site.</p>
+					</div>
+					<div class="col-sm-4 footer-blurb-item">
+						<img class="img-circle" src="https://scontent.fbho4-1.fna.fbcdn.net/v/t1.0-9/p960x960/53835396_391067238150351_2728176188630499328_o.jpg?_nc_cat=105&_nc_sid=85a577&_nc_ohc=aqWzNZINsZoAX81ZWc0&_nc_ht=scontent.fbho4-1.fna&_nc_tp=6&oh=50dfa92e3073807d113bd8fa222295fb&oe=5F46F024" alt="" width="100" height="100">
+						<h3>KEC,Bhilai CG</h3>
+						<p>We are from Krishna Engineering College, Bhilai CG Participating in SIH 2020.</p>
+					</div>
+
+				</div>
+				<!-- /.row -->	
+			</div>
+        </div>
+        
+        <div class="copyright">
+        	<div class="container">
+        		<p>Copyright &copy; sample.com 2020</p>
+        	</div>
+        </div>
+	</footer>
+
+	
+    <!-- jQuery -->
+    <script src="/static/js/jquery-1.11.3.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+<script>
+function please_sort_by(){
+a=document.getElementById("sort_by").value
+window.location.replace("http://localhost:8000?q="+a)
+}
+function openmodal(a){
+$('#myModal').modal('toggle');
+
+ $.ajax({
+ url: "/getmodal?id="+a,
+ success: function(result){
+    $("#modaltitle").html(result['title']);
+    $("#modalbody").html(result['body']);
+	    $("#modaldescription").html(result['modaldescription']);
+
+	
+	}
+  
+  });
+
+
+
+
+
+
+}
+
+
+var ids=[]
+function exe(id,con){
+con.innerText="added"
+if (ids.length>=2){
+
+window.location.replace("http://localhost:8000/compare?q="+ids.join('k'))
+
+
+}
+else{
+ids.push(id)
+
+
+
+}
+
+
+
+}
+
+function exe_dup(){
+if(ids.length>1){
+window.location.replace("http://localhost:8000/compare?q="+ids.join('k'))
+
+
+
+}
+
+
+
+}
+
+</script>
+</body>
+
+</html>
